@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Docente_EscuelaApp.Views.PerfilView"
+             xmlns:vm="clr-namespace:Docente_EscuelaApp.ViewModels"
+             Title="Información General" Shell.FlyoutBehavior="Flyout" Shell.NavBarIsVisible="False">
+    <Grid RowDefinitions="*,68">
+        <VerticalStackLayout Padding="10" HorizontalOptions="Center">
+            <Border Stroke="transparent" Background="#512BD4" VerticalOptions="CenterAndExpand" HeightRequest="130" 
+                    StrokeShape="RoundRectangle 13" WidthRequest="{Binding Source={x:Reference btn}, Path=Width}">
+            </Border>
+            <VerticalStackLayout Spacing="5" TranslationY="-50">
+            <Frame Margin="0,0,0,15" BorderColor="#512BD4"  WidthRequest="100" CornerRadius="50" HeightRequest="100" Padding="0">
+                <Image Source="userimage.jpg" Aspect="Fill" WidthRequest="100" HeightRequest="100">
+                </Image>
+            </Frame>
+            <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+                <Label FontSize="20" HorizontalOptions="Center" 
+                   FontFamily="GothamBold" Text="{Binding DocenteActual.Nombre}"></Label>
+                <Label FontSize="20" HorizontalOptions="Center" 
+                   FontFamily="GothamBold" Text="{Binding DocenteActual.ApellidoPaterno}"></Label>
+                <Label FontSize="20" HorizontalOptions="Center" 
+                   FontFamily="GothamBold" Text="{Binding DocenteActual.ApellidoMaterno}"></Label>
+            </HorizontalStackLayout>
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                    <Label FontSize="15"
+                   FontFamily="GothamMedium">Docente Especial -</Label>
+                    <Label FontSize="15" HorizontalOptions="Center" 
+                   FontFamily="GothamMedium" Text="{Binding DocenteActual.NombreAsignatura}"></Label>
+                </HorizontalStackLayout>
+            
+            <HorizontalStackLayout Spacing="0" Margin="0,6,0,0" HorizontalOptions="Center">
+                <HorizontalStackLayout.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="TextColor" Value="Gray"/>
+                    </Style>
+                </HorizontalStackLayout.Resources>
+                <Image Source="mailios.png" WidthRequest="32"></Image>
+                <Label Text="{Binding DocenteActual.Correo}" VerticalOptions="Center"></Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="0" HorizontalOptions="Center">
+                <HorizontalStackLayout.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="TextColor" Value="Gray"/>
+                    </Style>
+                </HorizontalStackLayout.Resources>
+                <Image Source="whatsapp.png" WidthRequest="32" Margin="0,0,0,0"></Image>
+                <Label Text="{Binding DocenteActual.Telefono}" VerticalOptions="Center"></Label>
+            </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <VerticalStackLayout Spacing="0">
+                <Label TranslationY="30" FontFamily="GothamMedium" Margin="5,0,0,40" FontSize="25" TextColor="#512BD4">Mis Grupos</Label>
+                <ScrollView>
+                    <ListView ItemsSource="{Binding MisGrupos}" Background="#ededed" HeightRequest="265" SelectedItem="{Binding GrupoActual}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <HorizontalStackLayout>
+                                        <HorizontalStackLayout.Resources>
+                                            <Style TargetType="Label">
+                                                <Setter Property="FontSize" Value="20"/>
+                                                <Setter Property="FontFamily" Value="GothamMedium"/>
+                                                <Setter Property="TextColor" Value="#2B0B98"/>
+                                                <Setter Property="VerticalOptions" Value="Center"/>
+                                            </Style>
+                                        </HorizontalStackLayout.Resources>
+
+                                        <HorizontalStackLayout Padding="10" Spacing="3" VerticalOptions="Center">
+                                            <Border WidthRequest="35" HeightRequest="35" Stroke="#2B0B98" StrokeShape="RoundRectangle 5">
+                                                <Image Source="group.png"></Image>
+                                            </Border>
+                                            <Label Margin="5,0,0,0">Grado:</Label>
+                                            <Label Text="{Binding Grado}"></Label>
+                                            <Label Margin="10,0,0,0">Sección</Label>
+                                            <Label Text="{Binding Seccion}"></Label>
+                                        </HorizontalStackLayout>
+
+                                    </HorizontalStackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+        <Grid BackgroundColor="White" Grid.Row="1" ColumnDefinitions="*,*" Margin="10,10,10,6">
+            <Button CornerRadius="10" BorderColor="#512BD4" BackgroundColor="White"  
+                            BorderWidth="2" TextColor="#512BD4" Text="VER GRUPO" Command="{Binding VerAlumnosCommand}" Margin="0,8,3,0"></Button>
+            <Button CornerRadius="10" Text="ACTUALIZAR GRUPOS" Command="{Binding ActualizarGruposCommand}" Margin="3,8,0,0" Grid.Column="1"></Button>
+        </Grid>
+    </Grid>
+</ContentPage>

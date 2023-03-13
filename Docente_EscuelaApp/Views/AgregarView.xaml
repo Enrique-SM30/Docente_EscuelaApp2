@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Docente_EscuelaApp.Views.AgregarView"
+             Shell.NavBarIsVisible="False"
+             Title="AgregarView">
+    <Border Background="#e6e6e6" Padding="25" HeightRequest="350" Margin="20,0" StrokeThickness="0"
+            StrokeShape="RoundRectangle 3">
+        <Border.Shadow>
+            <Shadow Brush="Black" Opacity="0" Offset="3,3" Radius="2">
+            </Shadow>
+        </Border.Shadow>
+        <VerticalStackLayout Spacing="35">
+            <HorizontalStackLayout Spacing="10">
+                <Label FontSize="25" FontAttributes="Bold" FontFamily="GothamMedium">Unidad</Label>
+                <Label FontSize="25" FontAttributes="Bold" FontFamily="GothamMedium" Text="{Binding CalificacionActual.Unidad}"></Label>
+            </HorizontalStackLayout>
+            
+            <Picker Title="Calificación" HorizontalOptions="Center" SelectedItem="{Binding CalificacionActual.Calificacion1}" WidthRequest="{Binding Source={x:Reference btn}, Path=Width}" Background="White">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:Int16}">
+                        <x:Int16>1</x:Int16>
+                        <x:Int16>2</x:Int16>
+                        <x:Int16>3</x:Int16>
+                        <x:Int16>4</x:Int16>
+                        <x:Int16>5</x:Int16>
+                        <x:Int16>6</x:Int16>
+                        <x:Int16>7</x:Int16>
+                        <x:Int16>8</x:Int16>
+                        <x:Int16>9</x:Int16>
+                        <x:Int16>10</x:Int16>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Button CornerRadius="10" Text="AGREGAR" Command="{Binding AgregarCommand}" x:Name="btn"></Button>
+            <Label HorizontalOptions="Center" TextColor="#757575" TextDecorations="Underline">Olvidé mi contraseña</Label>
+
+        </VerticalStackLayout>
+
+    </Border>
+</ContentPage>

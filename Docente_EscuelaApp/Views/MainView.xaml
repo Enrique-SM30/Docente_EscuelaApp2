@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Docente_EscuelaApp.Views.MainView"
+             xmlns:views="clr-namespace:Docente_EscuelaApp.Views"
+             Title="Login" Shell.NavBarIsVisible="False"
+             xmlns:vm="clr-namespace:Docente_EscuelaApp.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:DocenteViewModel></vm:DocenteViewModel>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout>
+        <Image Source="logo.png" WidthRequest="170" TranslationY="80"></Image>
+    <Border Background="#e6e6e6" Padding="25" Margin="40,120" StrokeThickness="0"
+            StrokeShape="RoundRectangle 3">
+        <Border.Shadow>
+            <Shadow Brush="Black" Opacity="0" Offset="3,3" Radius="2">
+            </Shadow>
+        </Border.Shadow>
+        <VerticalStackLayout Spacing="33">
+            <Label FontSize="25" FontAttributes="Bold" FontFamily="GothamMedium">INICIAR SESIÓN</Label>
+            <Frame BackgroundColor="White" CornerRadius="2" Padding="0">
+                <Grid ColumnDefinitions="45,*">
+                    <Image WidthRequest="32" Source="user.png"></Image>
+                    <Entry Placeholder="Usuario" Grid.Column="1" Text="{Binding LoginUser.Usuario1}"></Entry>
+                </Grid>
+            </Frame>
+            <Frame BackgroundColor="White" CornerRadius="2" Padding="0">
+                <Grid ColumnDefinitions="45,*">
+                    <Image Source="password.png" WidthRequest="32"></Image>
+                    <Entry Placeholder="Contraseña" Grid.Column="1" Text="{Binding LoginUser.Contraseña}" IsPassword="True"></Entry>
+                </Grid>
+            </Frame>
+            <Button CornerRadius="10" Text="INICIAR SESIÓN" Command="{Binding LoginCommand}"></Button>
+            <!--<Label HorizontalOptions="Center" TextColor="#757575" TextDecorations="Underline">Olvidé mi contraseña</Label>-->
+            <Label HorizontalOptions="Center" TextColor="Red" Text="{Binding Error}" TextDecorations="Underline"></Label>
+        </VerticalStackLayout>
+
+    </Border>
+    </VerticalStackLayout>
+</ContentPage>
