@@ -31,6 +31,7 @@ namespace Docente_EscuelaApp.ViewModels
         public ICommand VerCalificacionesCommand { get; set; }
         public ICommand VerAgregarCommand { get; set; }
         public ICommand AgregarCommand { get; set; }
+        public ICommand ActualizarGruposCommand { get; set; }
 
 
         public DocenteViewModel()
@@ -40,6 +41,7 @@ namespace Docente_EscuelaApp.ViewModels
             VerCalificacionesCommand = new Command(VerCalificaciones);
             VerAgregarCommand = new Command<Calificacion>(VerAgregar);
             AgregarCommand = new Command(Agregar);
+            ActualizarGruposCommand = new Command(ActualizarGrupos);
         }
 
         private async void Agregar()
@@ -139,6 +141,12 @@ namespace Docente_EscuelaApp.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Error)));
             }
 
+        }
+
+        private async void ActualizarGrupos()
+        {
+            MisGrupos = new ObservableCollection<Grupo>(await docentesService.GetGrupos(DocenteActual.Id));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MisGrupos)));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
