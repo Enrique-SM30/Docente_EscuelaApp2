@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Docente_EscuelaApp.Views.PerfilView"
              xmlns:vm="clr-namespace:Docente_EscuelaApp.ViewModels"
-             Title="Información General" Shell.FlyoutBehavior="Flyout" Shell.NavBarIsVisible="False">
+             Title="Información General" Shell.FlyoutBehavior="Flyout" Shell.NavBarIsVisible="False" NavigationPage.HasNavigationBar="False">
     <Grid RowDefinitions="*,68">
         <VerticalStackLayout Padding="10" HorizontalOptions="Center">
             <Border Stroke="transparent" Background="#512BD4" VerticalOptions="CenterAndExpand" HeightRequest="130" 

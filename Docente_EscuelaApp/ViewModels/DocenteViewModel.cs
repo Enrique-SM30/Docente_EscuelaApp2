@@ -48,10 +48,17 @@ namespace Docente_EscuelaApp.ViewModels
             CalificacionActual.IdPeriodo = 2;
             CalificacionActual.IdAlumno = AlumnoActual.Id;
             CalificacionActual.IdAsignatura = DocenteActual.IdAsigantura;
-            if(await docentesService.Insert(CalificacionActual))
+            if(CalificacionActual.Calificacion1 != 0)
             {
-                ActualizarCalificaciones();
-                await Application.Current.MainPage.Navigation.PopAsync();
+                if(await docentesService.Insert(CalificacionActual))
+                {
+                    ActualizarCalificaciones();
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                }
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Seleccione una calificación", "OK");
             }
         }
 
@@ -67,6 +74,10 @@ namespace Docente_EscuelaApp.ViewModels
             {
                 Alumnos = new ObservableCollection<Alumno>(await docentesService.GetAlumnos(GrupoActual.Id));
                 await Application.Current.MainPage.Navigation.PushAsync(new GruposView() { BindingContext = this });
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Seleccione un grupo", "OK");
             }
         }
         async void ActualizarCalificaciones()
@@ -104,6 +115,10 @@ namespace Docente_EscuelaApp.ViewModels
                 ActualizarCalificaciones();
                 await Application.Current.MainPage.Navigation.PushAsync(new CalificacionesView() { BindingContext = this });
             }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Seleccione un alumno", "OK");
+            }
 
         }
 
@@ -114,7 +129,8 @@ namespace Docente_EscuelaApp.ViewModels
                 DocenteActual = await docentesService.Login(LoginUser);
                 MisGrupos = new ObservableCollection<Grupo>(await docentesService.GetGrupos(DocenteActual.Id));
                 if (DocenteActual != null)
-                    await Application.Current.MainPage.Navigation.PushAsync(new PerfilView() { BindingContext = this });
+                    App.Current.MainPage = new NavigationPage(new PerfilView()) { BindingContext = this };
+                
             }
             catch (Exception e )
             {

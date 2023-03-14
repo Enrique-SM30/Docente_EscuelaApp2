@@ -4,7 +4,7 @@
              x:Class="Docente_EscuelaApp.Views.MainView"
              xmlns:views="clr-namespace:Docente_EscuelaApp.Views"
              Title="Login" Shell.NavBarIsVisible="False"
-             xmlns:vm="clr-namespace:Docente_EscuelaApp.ViewModels">
+             xmlns:vm="clr-namespace:Docente_EscuelaApp.ViewModels"  NavigationPage.HasNavigationBar="False">
     <ContentPage.BindingContext>
         <vm:DocenteViewModel></vm:DocenteViewModel>
     </ContentPage.BindingContext>

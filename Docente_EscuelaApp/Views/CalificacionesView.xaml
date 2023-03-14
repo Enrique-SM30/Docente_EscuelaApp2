@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Docente_EscuelaApp.Views.CalificacionesView"
              xmlns:vm="clr-namespace:Docente_EscuelaApp.ViewModels"
-             Title="CalificacionesView" Shell.NavBarIsVisible="False">
+             Title="CalificacionesView" Shell.NavBarIsVisible="False"  NavigationPage.HasNavigationBar="False">
     <Grid RowDefinitions="*,68">
         <VerticalStackLayout>
             <Label TranslationY="10" FontFamily="GothamMedium" Margin="15,0,0,20" FontSize="25" TextColor="#512BD4">Calificaciones</Label>
@@ -29,7 +29,18 @@
                                         <VerticalStackLayout VerticalOptions="Center" Margin="5,0,0,0">
                                             <HorizontalStackLayout>
                                                 <Label  FontSize="18">Calificación:</Label>
-                                                <Label FontSize="18" Text="{Binding Calificacion1}"></Label>
+                                                <Label FontSize="18">
+                                                    <Label.Style>
+                                                        <Style TargetType="Label">
+                                                            <Setter Property="Text" Value="{Binding Calificacion1}"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger TargetType="Label" Binding="{Binding Calificacion1}" Value="0">
+                                                                    <Setter Property="Text" Value="Sin Calificar"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Label.Style>
+                                                </Label>
                                             </HorizontalStackLayout>
                                             <HorizontalStackLayout>
                                                 <Label>Unidad:</Label>
